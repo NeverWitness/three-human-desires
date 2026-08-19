@@ -1,0 +1,17 @@
+human-nature-and-choice/
+│
+├── README.md
+│
+├── 01-human-nature.md
+├── 02-choice.md
+├── 03-history-and-state.md
+├── 04-subjective-utility.md
+├── 05-behavior-generation.md
+├── 06-freedom-and-responsibility.md
+│
+├── notes/
+│   ├── definitions.md
+│   ├── open-questions.md
+│   └── revisions.md
+│
+└── LICENSE

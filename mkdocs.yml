@@ -1,0 +1,77 @@
+site_name: SfCPL by NeverWitness
+site_url: https://neverwitness.github.io/self-from-coupled-predictive-loops/
+site_description: Self from Coupled Predictive Loops Hypothesis
+
+docs_dir: build_docs
+site_dir: site
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - content.code.copy
+
+plugins:
+  - search
+  - i18n:
+      docs_structure: folder
+      reconfigure_material: true
+      languages:
+        - locale: zh
+          name: 简体中文
+          build: true
+          default: true
+
+        - locale: en
+          name: English
+          build: true
+          nav_translations:
+            首页: Home
+
+            理论: Theory
+
+            理论框架: Theory Framework
+            核心概念: Core Concepts
+
+            解释与科学背景: Explanation & Scientific Background
+            解释能力: Explanatory Power
+            科学背景: Scientific Background
+
+            验证与边界: Predictions & Boundaries
+            可检验预测: Testable Predictions
+            局限性: Limitations
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - tables
+  - admonition
+  - attr_list
+  - md_in_html
+
+extra_css:
+  - stylesheets/extra.css
+
+draft_docs: |
+  zh/_drafts/
+  en/_drafts/
+
+nav:
+  - 首页: indexE.md
+
+  - 理论:
+      - 理论框架: theory.md
+      - 核心概念: core_concepts.md
+
+  - 解释与科学背景:
+      - 解释能力: explanatory_power.md
+      - 科学背景: scientific_background.md
+
+  - 验证与边界:
+      - 可检验预测: predictions.md
+      - 局限性: limitations.md

@@ -1,0 +1,16 @@
+/* 让图标和文字横向排列 */
+.md-header__option > .md-select > button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+html[lang="zh"] .md-header__option > .md-select > button::after {
+  content: "EN / 中";
+  font-size: 0.9rem;
+}
+
+html[lang="en"] .md-header__option > .md-select > button::after {
+  content: "中 / EN";
+  font-size: 0.9rem;
+}

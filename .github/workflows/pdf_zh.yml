@@ -1,0 +1,124 @@
+name: Build PDF ZH
+
+on:
+#   push:
+#     branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-zh-pdf:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Pandoc and XeLaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            pandoc \
+            texlive-xetex \
+            texlive-latex-extra \
+            texlive-lang-chinese \
+            fonts-noto-core \
+            fonts-noto-cjk
+
+      - name: Create build directory
+        run: mkdir -p build
+
+      - name: Generate combined markdown
+        run: |
+          cat > build/title.md <<'EOF'
+          ---
+          title: "耦合预测环自我生成假说"
+          author: "NeverWitness"
+          date: \today
+          lang: zh
+          toc: true
+          papersize: a4
+          geometry: margin=2.2cm
+          fontsize: 12pt
+          header-includes:
+            - \usepackage{xeCJK}
+            - \setCJKmainfont{Noto Serif CJK SC}
+            - \usepackage{enumitem}
+            - \setlist[itemize]{itemsep=0.25em, topsep=0.25em, parsep=0pt, partopsep=0pt}
+            - \setlist[enumerate]{itemsep=0.25em, topsep=0.25em, parsep=0pt, partopsep=0pt}
+            - \usepackage{titlesec}
+            - \titlespacing*{\section}{0pt}{1.5\baselineskip}{1.2\baselineskip}
+            - \titlespacing*{\subsection}{0pt}{1.2\baselineskip}{1\baselineskip}
+          ---
+
+          EOF
+
+          cp build/title.md build/book-zh.md
+
+          for file in \
+            docs/zh-CN/index.md \
+            docs/zh-CN/overview/overview.md \
+            docs/zh-CN/background/asset-inequality.md \
+            docs/zh-CN/background/asset-vs-living-gap.md \
+            docs/zh-CN/price-structure/basic-goods-and-beyond.md \
+            docs/zh-CN/price-structure/price-structure-matters.md \
+            docs/zh-CN/technology-fee/concept.md \
+            docs/zh-CN/technology-fee/hierarchy-and-dissemination.md \
+            docs/zh-CN/technology-fee/dynamic-change.md \
+            docs/zh-CN/technology-fee/system-and-public-access.md \
+            docs/zh-CN/technology-fee/competition.md \
+            docs/zh-CN/policy-discussion/dynamic-public-dividend.md \
+            docs/zh-CN/policy-discussion/taxation-in-the-tech-era.md \
+            docs/zh-CN/policy-discussion/technology-fee-response.md \
+            docs/zh-CN/policy-discussion/supply-distortion-question.md \
+            docs/zh-CN/policy-discussion/external-challenges.md \
+            docs/zh-CN/evolution/enterprise-strategy.md \
+            docs/zh-CN/evolution/institutional-evolution.md
+          do
+            tmp="build/$(basename "$file")"
+
+            cp "$file" "$tmp"
+
+            # 删除“回到目录”整行
+            sed -i '/回到目录/d' "$tmp"
+
+            if [ "$file" = "docs/zh-CN/index.md" ]; then
+              # index.md：保留链接文字，删除链接目标
+              sed -i -E 's/\[([^\]]+)\]\([^)]+\)/\1/g' "$tmp"
+            else
+              # 其他 md：删除整个 Markdown 链接（文字和链接一起删）
+              sed -i -E 's/\[[^]]+\]\([^)]+\)//g' "$tmp"
+            fi
+
+            # 删除 HTML 链接
+            if [ "$file" = "docs/zh-CN/index.md" ]; then
+              sed -i -E 's/<a [^>]*>([^<]+)<\/a>/\1/g' "$tmp"
+            else
+              sed -i -E 's/<a [^>]*>[^<]+<\/a>//g' "$tmp"
+            fi
+
+            # 只处理正文文件里的分割线，不碰 title.md
+            sed -i -E 's/^[[:space:]]*([-*_][[:space:]]*){3,}$/\\vspace{2\\baselineskip}/' "$tmp"
+
+            printf '\n\n\\clearpage\n\n' >> build/book-zh.md
+            cat "$tmp" >> build/book-zh.md
+          done
+
+      - name: Replace unsupported emoji
+        run: |
+          sed -i 's/⚠️/[注意]/g' build/book-zh.md
+          sed -i 's/⚠/[注意]/g' build/book-zh.md
+
+      - name: Convert markdown to PDF
+        run: |
+          pandoc build/book-zh.md \
+            --from markdown+hard_line_breaks \
+            --pdf-engine=xelatex \
+            --standalone \
+            --toc \
+            -o build/tech-fee-framework-zh.pdf
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tech-fee-framework-zh-pdf
+          path: build/tech-fee-framework-zh.pdf
