@@ -49,3 +49,51 @@
 
 - **[08｜可能的检验和预测](docs/zh/预发布/08_可能的检验和预测.md)**  
   整理模型中可以受到现实观察支持、削弱或挑战的经验性判断。
+
+---
+
+## 许可证
+
+本项目采用以下许可协议：
+
+**知识共享 署名-非商业性使用-禁止演绎 4.0 国际许可协议**
+**CC BY-NC-ND 4.0**
+
+许可协议官方网站：
+https://creativecommons.org/licenses/by-nc-nd/4.0/
+
+根据本许可协议：
+
+* **署名（Attribution）** — 在明确注明原作者及来源的前提下，可以复制和传播本项目的原始内容。
+* **非商业性使用（NonCommercial）** — 不得将本项目内容用于商业目的。
+* **禁止演绎（NoDerivatives）** — 如果对本项目内容进行了改编、转换、翻译、修改或基于其创作新的内容，不得传播修改后的版本。
+* **转载与再分发（Redistribution）** — 在遵守上述许可条件的前提下，可以转载、复制和再分发未经修改的原始内容。
+* **引用（Citation）** — 允许并鼓励在适当署名的情况下引用和参考本项目。
+
+完整的许可条款及法律文本，请以 Creative Commons 官方许可协议页面为准。
+
+如需获得修改、创作演绎作品或将本材料用于商业用途的许可，请通过 GitHub 联系作者。
+
+---
+
+## License
+
+This project is licensed under the:
+
+**Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License**
+**CC BY-NC-ND 4.0**
+
+Official license:
+https://creativecommons.org/licenses/by-nc-nd/4.0/
+
+Under this license:
+
+* **Attribution** — You may copy and redistribute the material, provided that appropriate credit is given to the original author and source.
+* **NonCommercial** — You may not use the material for commercial purposes.
+* **NoDerivatives** — If you remix, transform, translate, modify, or build upon the material, you may not distribute the modified material.
+* **Redistribution** — Redistribution of the original, unmodified material is permitted, provided that the above license terms are followed.
+* **Citation** — Citation and reference to this project are permitted and encouraged, with appropriate attribution.
+
+For the complete license terms and legal code, please refer to the official Creative Commons license page linked above.
+
+For permission to modify, create derivative works, or use the material commercially, please contact the author via GitHub.
