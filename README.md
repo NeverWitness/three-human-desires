@@ -74,6 +74,8 @@ https://creativecommons.org/licenses/by-nc-nd/4.0/
 
 完整的许可条款及法律文本，请以 Creative Commons 官方许可协议页面为准。
 
+如需获得修改、创作演绎作品或将本材料用于商业用途的许可，请通过 GitHub 联系作者。
+
 ---
 
 ## License
@@ -95,3 +97,5 @@ Under this license:
 * **Citation** — Citation and reference to this project are permitted and encouraged, with appropriate attribution.
 
 For the complete license terms and legal code, please refer to the official Creative Commons license page linked above.
+
+For permission to modify, create derivative works, or use the material commercially, please contact the author via GitHub.
