@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://neverwitness.github.io/self-from-coupled-predictive-loops/sitemap.xml
+Sitemap: https://neverwitness.github.io/three-human-desires/sitemap.xml
